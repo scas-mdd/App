@@ -1,0 +1,64 @@
+#{extends 'main.html' /}
+#{set title:'Register' /}
+
+<h1>Register</h1>
+
+#{form @saveCustomer()}
+    #{field 'customer.email'}
+        <p class="${field.errorClass}">
+            <strong>Email:</strong> <input type="text" name="${field.name}" size="16" value="${customer?.email}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'customer.firstName'}
+        <p class="${field.errorClass}">
+            <strong>First name:</strong> <input type="text" name="${field.name}" size="16" value="${customer?.firstName}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'customer.lastName'}
+        <p class="${field.errorClass}">
+            <strong>Last name:</strong> <input type="text" name="${field.name}" size="16" value="${customer?.lastName}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'customer.street'}
+        <p class="${field.errorClass}">
+            <strong>Street:</strong> <input type="text" name="${field.name}" size="16" value="${customer?.street}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'customer.city'}
+        <p class="${field.errorClass}">
+            <strong>City:</strong> <input type="text" name="${field.name}" size="16" value="${customer?.city}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'customer.postalCode'}
+        <p class="${field.errorClass}">
+            <strong>Postal Code:</strong> <input type="text" name="${field.name}" size="16" value="${customer?.postalCode}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'customer.country'}
+        <p class="${field.errorClass}">
+            <strong>Country:</strong> <input type="text" name="${field.name}" size="16" value="${customer?.country}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'customer.password'}
+        <p class="${field.errorClass}">
+            <strong>Password:</strong> <input type="password" name="${field.name}" size="16" value="${customer?.password}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'verifyPassword'}
+        <p class="${field.errorClass}">
+            <strong>Verify password:</strong> <input type="password" name="${field.name}" size="16" value="${verifyPassword}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}    
+    <p class="buttons">
+        <input type="submit" value="Register"> <a href="@{index()}">Cancel</a>    
+    </p>
+#{/form}
