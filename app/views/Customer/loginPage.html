@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'Login' /}
+
+#{form @login()}
+	#{field 'email'}
+        <p class="${field.errorClass}">
+            <strong>Email:</strong> <input type="text" name="email" size="25" value="${email}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    
+    #{field 'password'}
+        <p class="${field.errorClass}">
+            <strong>Password:</strong> <input type="password" name="password" size="25" value="${password}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    <p class="buttons">
+            <input type="submit" value="Account login" />
+        </p>
+    
+#{/form}

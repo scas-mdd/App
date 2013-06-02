@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +33,7 @@ public class Customer extends GenericModel{
 	@MaxSize(value=255, message = "email.maxsize")
     @Email
     public String email;
+	
 	@Required
 	@Password
 	public String password;
@@ -48,5 +51,16 @@ public class Customer extends GenericModel{
 		this.password = password;
 	}
 	
+	public static Customer findByEmail(String email){
+		return (Customer) JPA.em().createNativeQuery("select * from customer where email='"+email+"'",Customer.class).getSingleResult();
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [firstName=" + firstName
+				+ ", lastName=" + lastName + ", street=" + street + ", city="
+				+ city + ", postalCode=" + postalCode + ", country=" + country
+				+ ", email=" + email + ", password=" + password + "]";
+	}
 	
 }

@@ -7,6 +7,8 @@ GET     /                                       Application.index
 GET     /register                               Customer.register
 POST    /register                               Customer.saveCustomer
 GET     /customers                              Customer.index
+GET		/login									Customer.loginPage
+POST 	/login									Customer.login
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
