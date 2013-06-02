@@ -9,6 +9,9 @@ POST    /register                               Customer.saveCustomer
 GET     /customers                              Customer.index
 GET		/login									Customer.loginPage
 POST 	/login									Customer.login
+GET     /resetPassword							Customer.resetPassword
+POST    /resetPassword							Customer.lostPassword
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

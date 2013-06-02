@@ -1,5 +1,8 @@
 #{extends 'main.html' /}
 #{set title:'Login' /}
+<div class="header">
+<h1>Header</h1>
+</div>
 
 #{form @login()}
 	#{field 'email'}
@@ -17,6 +20,9 @@
     #{/field}
     <p class="buttons">
             <input type="submit" value="Account login" />
-        </p>
+            <input type="button" value="Forgot password" onclick = "window.location.href='/resetPassword'"/>
+            <input type="button" value="Create account" onclick = "window.location.href='/register'" />
+    </p>
+    
     
 #{/form}
