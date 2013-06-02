@@ -32,11 +32,11 @@ public class Customer extends Application{
 		}
 		if(!validEmail){
 			validation.required(customer.email);
-			validation.equals("", customer.email).message("E-mail is already taken");
-			
+			//validation.equals("", customer.email).message("E-mail is already taken");
+			validation.addError("customer.email","This e-mail address is already registered. If this is your account, reset the password.");
 			if(validation.hasErrors()){
 				play.Logger.info("E-mail is not valid");
-				render("@register", customer, customer.email);
+				render("@register", customer, validation.error("customer.email"));
 			}
 		}
 		
@@ -79,7 +79,16 @@ public class Customer extends Application{
 		if(validation.hasErrors()){
 			render("@loginPage", email);
 		}
-		models.Customer customer = models.Customer.findByEmail(email);
+		models.Customer customer = null;
+		try{
+			customer = models.Customer.findByEmail(email);
+		}catch(Exception e){
+			validation.required(email);
+			validation.addError("email", "This e-mail does not exists in our database.");
+			if(validation.hasErrors()){
+				render("@loginPage",validation.error("email"));
+			}
+		}
 		if(customer != null){
 			if(BCrypt.checkpw(password, customer.password)){
 				session.put("customer", customer);
@@ -104,7 +113,17 @@ public class Customer extends Application{
 		}
 		SecureRandom random = new SecureRandom();
 		String newPass = new BigInteger(32,random).toString(32);
-		models.Customer customer = models.Customer.findByEmail(email);
+		models.Customer customer = null;
+		try{
+			customer = models.Customer.findByEmail(email);
+		}catch(Exception e){
+			validation.required(email);
+			validation.addError("email", "This e-mail does not exists in our database.");
+			if(validation.hasErrors()){
+				render("@resetPassword",validation.error("email"));
+			}
+		}
+		
 		SimpleEmail e_mail = new SimpleEmail();
 		e_mail.setFrom("handler@drinkstation.com");
 		e_mail.addTo(email);

@@ -51,16 +51,18 @@ public class Customer extends GenericModel{
 		this.password = password;
 	}
 	
-	public static Customer findByEmail(String email){
-		return (Customer) JPA.em().createNativeQuery("select * from customer where email='"+email+"'",Customer.class).getSingleResult();
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Customer [firstName=" + firstName
 				+ ", lastName=" + lastName + ", street=" + street + ", city="
 				+ city + ", postalCode=" + postalCode + ", country=" + country
 				+ ", email=" + email + ", password=" + password + "]";
+	}
+
+	public static models.Customer findByEmail(String email2) {
+		// TODO Auto-generated method stub
+		return (Customer) JPA.em().createNativeQuery("select * from customer where email='"+email2+"'",Customer.class).getSingleResult();
 	}
 	
 }
